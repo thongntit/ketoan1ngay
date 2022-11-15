@@ -20,7 +20,7 @@ export default function Index({
     enabled: preview,
   })
   const [heroPost, ...morePosts] = allPosts || []
-  const { title = 'Blog.' } = blogSettings || {}
+  const { title = 'Blog.', h1 } = blogSettings || {}
 
   return (
     <>
@@ -29,7 +29,7 @@ export default function Index({
           <title>{title}</title>
         </Head>
         <Container>
-          <BlogHeader title={title} />
+          <BlogHeader title={h1} />
           {heroPost && (
             <HeroPost
               title={heroPost.title}

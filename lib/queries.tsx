@@ -4,6 +4,7 @@ const postFields = groq`
   _id,
   name,
   title,
+  h1,
   date,
   excerpt,
   coverImage,
@@ -11,7 +12,7 @@ const postFields = groq`
   "author": author->{name, picture},
 `
 
-export const settingsQuery = groq`*[_type == "settings"][0]{title}`
+export const settingsQuery = groq`*[_type == "settings"][0]{title, h1}`
 
 export const indexQuery = groq`
 *[_type == "post"] | order(date desc, _updatedAt desc) {

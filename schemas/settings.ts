@@ -15,5 +15,13 @@ export default defineType({
       initialValue: 'Blog.',
       validation: (rule) => rule.required(),
     },
+    {
+      name: 'h1',
+      description: 'This field is the main h1 tag of your blog.',
+      title: 'H1',
+      type: 'string',
+      initialValue: 'H1',
+      validation: (rule) => rule.required(),
+    },
   ],
 })

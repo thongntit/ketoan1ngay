@@ -6,11 +6,12 @@ import HeroPost from '../components/hero-post'
 import IntroTemplate from '../components/intro-template'
 import Layout from '../components/layout'
 import MoreStories from '../components/more-stories'
+import WithSubnavigation from '../components/NavBar/NavBar'
 import { indexQuery, settingsQuery } from '../lib/queries'
 import { usePreviewSubscription } from '../lib/sanity'
 import { getClient, overlayDrafts } from '../lib/sanity.server'
 
-export default function Index({
+function Index({
   allPosts: initialAllPosts,
   preview,
   blogSettings,
@@ -20,7 +21,7 @@ export default function Index({
     enabled: preview,
   })
   const [heroPost, ...morePosts] = allPosts || []
-  const { title = 'Blog.' } = blogSettings || {}
+  const { title = 'Blog.', h1 } = blogSettings || {}
 
   return (
     <>
@@ -29,7 +30,7 @@ export default function Index({
           <title>{title}</title>
         </Head>
         <Container>
-          <BlogHeader title={title} />
+          <WithSubnavigation title={h1} />
           {heroPost && (
             <HeroPost
               title={heroPost.title}
@@ -67,3 +68,5 @@ export async function getStaticProps({ preview = false }) {
     revalidate: undefined,
   }
 }
+
+export default Index

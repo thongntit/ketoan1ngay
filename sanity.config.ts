@@ -3,7 +3,7 @@
  */
 
 import { visionTool } from '@sanity/vision'
-import { createConfig, Slug } from 'sanity'
+import { defineConfig, Slug } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 
@@ -15,7 +15,7 @@ import settingsType from './schemas/settings'
 // @TODO: update next-sanity/studio to automatically set this when needed
 const basePath = '/studio'
 
-export default createConfig({
+export default defineConfig({
   basePath,
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,

@@ -21,7 +21,7 @@ function Index({
     enabled: preview,
   })
   const [heroPost, ...morePosts] = allPosts || []
-  const { title = 'Blog.', h1 } = blogSettings || {}
+  const { title = 'Blog.', h1, logo } = blogSettings || {}
 
   return (
     <>
@@ -30,7 +30,7 @@ function Index({
           <title>{title}</title>
         </Head>
         <Container>
-          <WithSubnavigation title={h1} />
+          <WithSubnavigation title={h1} logo={logo} />
           {heroPost && (
             <HeroPost
               title={heroPost.title}

@@ -76,12 +76,14 @@ export default function WithSubnavigation({ title, logo }) {
         >
           <Button
             display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
+            fontSize={'md'}
+            fontWeight={700}
             color={'white'}
-            bg={'orange.400'}
+            bg={'red.500'}
+            marginLeft={"8px"}
+            borderRadius='24px'
             _hover={{
-              bg: 'orange.300',
+              bg: 'red.400',
             }}
           >
             Tư vấn
@@ -110,7 +112,7 @@ const DesktopNav = () => {
               <Link
                 p={2}
                 href={navItem.href ?? '#'}
-                fontSize={'sm'}
+                fontSize={'md'}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
@@ -289,14 +291,6 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Thay đổi GPKD',
-    href: '#',
-  },
-  {
-    label: 'Dịch vụ khác',
-    href: '#',
-  },
-  {
-    label: 'Dịch vụ khác',
     href: '#',
   },
   {

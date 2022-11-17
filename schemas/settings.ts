@@ -23,5 +23,12 @@ export default defineType({
       initialValue: 'H1',
       validation: (rule) => rule.required(),
     },
+    {
+      name: 'logo',
+      title: 'Logo',
+      type: 'image',
+      options: { hotspot: true },
+      validation: (Rule) => Rule.required(),
+    },
   ],
 })

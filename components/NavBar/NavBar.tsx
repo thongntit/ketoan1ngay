@@ -11,6 +11,7 @@ import {
   Flex,
   Icon,
   IconButton,
+  Image,
   Link,
   Popover,
   PopoverContent,
@@ -22,8 +23,11 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 
-export default function WithSubnavigation({ title }) {
+import { urlForImage } from '../../lib/sanity'
+
+export default function WithSubnavigation({ title, logo }) {
   const { isOpen, onToggle } = useDisclosure()
+  const image = logo?.asset?._ref
 
   return (
     <Box>
@@ -58,7 +62,7 @@ export default function WithSubnavigation({ title }) {
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}
           >
-            {title}
+            <Image src={urlForImage(image).url()} alt={title} />
           </Text>
         </Flex>
         <Flex display={{ base: 'none', md: 'flex' }} ml={10}>

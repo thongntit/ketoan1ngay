@@ -9,6 +9,7 @@ import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 
 import { PostsPreview } from './components/Posts/PostsPreview'
 import authorType from './schemas/author'
+import navigationType from './schemas/navigation'
 import postType from './schemas/post'
 import settingsType from './schemas/settings'
 
@@ -24,7 +25,7 @@ export default defineConfig({
     'Next.js Blog with Sanity.io',
   schema: {
     // If you want more content types, you can add them to this array
-    types: [settingsType, postType, authorType],
+    types: [settingsType, navigationType, postType, authorType],
   },
   plugins: [
     deskTool({

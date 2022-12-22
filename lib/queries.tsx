@@ -14,6 +14,8 @@ const postFields = groq`
 
 export const settingsQuery = groq`*[_type == "settings"][0]{title, h1, logo}`
 
+export const navQuery = groq`*[_type == "navigations"]`
+
 export const indexQuery = groq`
 *[_type == "post"] | order(date desc, _updatedAt desc) {
   ${postFields}

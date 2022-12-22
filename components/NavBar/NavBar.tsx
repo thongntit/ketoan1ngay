@@ -11,6 +11,7 @@ import {
   Flex,
   Icon,
   IconButton,
+  Image,
   Link,
   Popover,
   PopoverContent,
@@ -22,8 +23,12 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 
-export default function WithSubnavigation({ title }) {
+import { urlForImage } from '../../lib/sanity'
+
+export default function WithSubnavigation({ title, logo, items }) {
   const { isOpen, onToggle } = useDisclosure()
+  const image = logo?.asset?._ref
+  const navItems = items.map((items) => ({ label: items.title }))
 
   return (
     <Box>
@@ -58,11 +63,11 @@ export default function WithSubnavigation({ title }) {
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}
           >
-            {title}
+            <Image src={urlForImage(image).url()} alt={title} />
           </Text>
         </Flex>
         <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-          <DesktopNav />
+          <DesktopNav navItems={navItems} />
         </Flex>
         <Stack
           flex={{ base: 1, md: 0 }}
@@ -72,12 +77,14 @@ export default function WithSubnavigation({ title }) {
         >
           <Button
             display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
+            fontSize={'md'}
+            fontWeight={700}
             color={'white'}
-            bg={'orange.400'}
+            bg={'red.500'}
+            marginLeft={'8px'}
+            borderRadius="24px"
             _hover={{
-              bg: 'orange.300',
+              bg: 'red.400',
             }}
           >
             Tư vấn
@@ -86,27 +93,27 @@ export default function WithSubnavigation({ title }) {
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        <MobileNav navItems={navItems} />
       </Collapse>
     </Box>
   )
 }
 
-const DesktopNav = () => {
+const DesktopNav = ({ navItems }) => {
   const linkColor = useColorModeValue('gray.600', 'gray.200')
   const linkHoverColor = useColorModeValue('gray.800', 'white')
   const popoverContentBgColor = useColorModeValue('white', 'gray.800')
 
   return (
     <Stack direction={'row'} spacing={4}>
-      {NAV_ITEMS.map((navItem) => (
+      {navItems.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
               <Link
                 p={2}
                 href={navItem.href ?? '#'}
-                fontSize={'sm'}
+                fontSize={'md'}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
@@ -178,14 +185,14 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   )
 }
 
-const MobileNav = () => {
+const MobileNav = ({ navItems }) => {
   return (
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
       p={4}
       display={{ md: 'none' }}
     >
-      {NAV_ITEMS.map((navItem) => (
+      {navItems.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
     </Stack>
@@ -285,14 +292,6 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Thay đổi GPKD',
-    href: '#',
-  },
-  {
-    label: 'Dịch vụ khác',
-    href: '#',
-  },
-  {
-    label: 'Dịch vụ khác',
     href: '#',
   },
   {

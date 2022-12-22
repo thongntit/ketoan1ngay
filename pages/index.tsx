@@ -7,7 +7,7 @@ import IntroTemplate from '../components/intro-template'
 import Layout from '../components/layout'
 import MoreStories from '../components/more-stories'
 import WithSubnavigation from '../components/NavBar/NavBar'
-import { indexQuery, settingsQuery } from '../lib/queries'
+import { indexQuery, navQuery, settingsQuery } from '../lib/queries'
 import { usePreviewSubscription } from '../lib/sanity'
 import { getClient, overlayDrafts } from '../lib/sanity.server'
 
@@ -15,6 +15,7 @@ function Index({
   allPosts: initialAllPosts,
   preview,
   blogSettings,
+  navSettings
 }) {
   const { data: allPosts } = usePreviewSubscription(indexQuery, {
     initialData: initialAllPosts,
@@ -30,7 +31,7 @@ function Index({
           <title>{title}</title>
         </Head>
         <Container>
-          <WithSubnavigation title={h1} logo={logo} />
+          <WithSubnavigation title={h1} logo={logo} items={navSettings} />
           {heroPost && (
             <HeroPost
               title={heroPost.title}
@@ -54,9 +55,10 @@ export async function getStaticProps({ preview = false }) {
   if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
     const allPosts = overlayDrafts(await getClient(preview).fetch(indexQuery))
     const blogSettings = await getClient(preview).fetch(settingsQuery)
+    const navSettings = await getClient(preview).fetch(navQuery)
 
     return {
-      props: { allPosts, preview, blogSettings },
+      props: { allPosts, preview, blogSettings, navSettings },
       // If webhooks isn't setup then attempt to re-generate in 1 minute intervals
       revalidate: process.env.SANITY_REVALIDATE_SECRET ? undefined : 60,
     }

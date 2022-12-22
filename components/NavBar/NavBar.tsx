@@ -25,9 +25,10 @@ import {
 
 import { urlForImage } from '../../lib/sanity'
 
-export default function WithSubnavigation({ title, logo }) {
+export default function WithSubnavigation({ title, logo, items }) {
   const { isOpen, onToggle } = useDisclosure()
   const image = logo?.asset?._ref
+  const navItems = items.map((items) => ({ label: items.title }))
 
   return (
     <Box>
@@ -66,7 +67,7 @@ export default function WithSubnavigation({ title, logo }) {
           </Text>
         </Flex>
         <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-          <DesktopNav />
+          <DesktopNav navItems={navItems} />
         </Flex>
         <Stack
           flex={{ base: 1, md: 0 }}
@@ -80,8 +81,8 @@ export default function WithSubnavigation({ title, logo }) {
             fontWeight={700}
             color={'white'}
             bg={'red.500'}
-            marginLeft={"8px"}
-            borderRadius='24px'
+            marginLeft={'8px'}
+            borderRadius="24px"
             _hover={{
               bg: 'red.400',
             }}
@@ -92,20 +93,20 @@ export default function WithSubnavigation({ title, logo }) {
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        <MobileNav navItems={navItems} />
       </Collapse>
     </Box>
   )
 }
 
-const DesktopNav = () => {
+const DesktopNav = ({ navItems }) => {
   const linkColor = useColorModeValue('gray.600', 'gray.200')
   const linkHoverColor = useColorModeValue('gray.800', 'white')
   const popoverContentBgColor = useColorModeValue('white', 'gray.800')
 
   return (
     <Stack direction={'row'} spacing={4}>
-      {NAV_ITEMS.map((navItem) => (
+      {navItems.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
@@ -184,14 +185,14 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   )
 }
 
-const MobileNav = () => {
+const MobileNav = ({ navItems }) => {
   return (
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
       p={4}
       display={{ md: 'none' }}
     >
-      {NAV_ITEMS.map((navItem) => (
+      {navItems.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
     </Stack>

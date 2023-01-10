@@ -9,7 +9,7 @@ export default function HeroPost(props: PostProps) {
   const { title, coverImage, date, excerpt, author, slug } = props
   return (
     <section>
-      <div className="mb-8 md:mb-16">
+      <div className="mb-8 mt-8 md:mb-16 px-20">
         <CoverImage slug={slug} title={title} image={coverImage} priority />
       </div>
       <div className="mb-20 md:mb-28 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">

@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useEffect } from 'react'
 
 import Container from '../components/container'
 import HeroPost from '../components/hero-post'
@@ -13,7 +14,7 @@ function Index({
   allPosts: initialAllPosts,
   preview,
   blogSettings,
-  navSettings
+  navSettings,
 }) {
   const { data: allPosts } = usePreviewSubscription(indexQuery, {
     initialData: initialAllPosts,
@@ -22,6 +23,11 @@ function Index({
   const [heroPost, ...morePosts] = allPosts || []
   const { title = 'Blog.', h1, logo } = blogSettings || {}
 
+  useEffect(() => {
+    if (window.dataLayer) {
+      window.dataLayer.push({ page_name: 'homepage' })
+    }
+  }, [])
   return (
     <>
       <Layout preview={preview}>
@@ -42,7 +48,7 @@ function Index({
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Container>
-O      </Layout>
+      </Layout>
     </>
   )
 }

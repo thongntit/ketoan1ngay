@@ -36,6 +36,7 @@
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
+    "@builder.io/partytown": "^0.7.4",
     "@types/react": "^18.0.25",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.27.0",

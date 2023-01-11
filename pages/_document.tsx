@@ -21,7 +21,7 @@ export default class Document extends ServerStyleSheetDocument {
         <body>
           <noscript>
             <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
+              src="https://www.googletagmanager.com/ns.html?id=GTM-55M8MG7"
               height="0"
               width="0"
               style={{ display: 'none', visibility: 'hidden' }}
@@ -29,7 +29,7 @@ export default class Document extends ServerStyleSheetDocument {
           </noscript>
           <Main />
           <NextScript />
-          <FAB />
+          {/* <FAB /> */}
         </body>
       </Html>
     )

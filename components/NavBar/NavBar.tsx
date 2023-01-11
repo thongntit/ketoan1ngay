@@ -86,6 +86,11 @@ export default function WithSubnavigation({ title, logo, items }) {
             _hover={{
               bg: 'red.400',
             }}
+            onClick={() => {
+              if ((window as any).dataLayer) {
+                (window as any).dataLayer.push({event: 'click_call_back_button'})
+              }
+            }}
           >
             Tư vấn
           </Button>

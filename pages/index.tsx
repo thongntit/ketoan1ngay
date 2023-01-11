@@ -67,6 +67,7 @@ export async function getStaticProps({ preview = false }) {
     }
   }
 
+
   /* when the client isn't set up */
   return {
     props: {},

@@ -9,7 +9,7 @@ export default class Document extends ServerStyleSheetDocument {
     return (
       <Html lang="en">
         <Head>
-          <Script id="google-tag-manager" strategy="afterInteractive">
+          <Script id="google-tag-manager" strategy="worker">
             {`
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -20,9 +20,9 @@ export default class Document extends ServerStyleSheetDocument {
           </Script>
           <Script
             src="https://www.googletagmanager.com/gtag/js?id=G-6B44WFNMJF"
-            strategy="afterInteractive"
+            strategy="worker"
           />
-          <Script id="google-analytics" strategy="afterInteractive">
+          <Script id="google-analytics" strategy="worker">
             {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}

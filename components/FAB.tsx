@@ -1,10 +1,16 @@
+import { PhoneIcon } from '@chakra-ui/icons'
 import { Button } from '@chakra-ui/react'
-import React from 'react'
 
 type Props = {}
 
 export const FAB = (props: Props) => {
-  return <div className=" fixed bottom-20 right-20 bg-red-400 p-6 text-white">TƯ VẤN NGAY</div>
+  return (
+    <div className="fixed bottom-20 right-10">
+      <Button leftIcon={<PhoneIcon />} colorScheme="pink" variant="solid">
+        Gọi ngay
+      </Button>
+    </div>
+  )
 }
 
 export default FAB

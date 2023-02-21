@@ -14,12 +14,12 @@ export default class Document extends ServerStyleSheetDocument {
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        '/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','${GTM_ID}');
       `}
           </Script>
           <Script
-            src="https://www.googletagmanager.com/gtag/js?id=G-6B44WFNMJF"
+            src="/gtag.js?id=G-6B44WFNMJF"
             strategy="worker"
           />
           <Script id="google-analytics" strategy="worker">
@@ -35,12 +35,11 @@ export default class Document extends ServerStyleSheetDocument {
         <body>
           <noscript
             dangerouslySetInnerHTML={{
-              __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display: none; visibility: hidden;" />`,
+              __html: `<iframe src="/gtm.js" height="0" width="0" style="display: none; visibility: hidden;" />`,
             }}
           />
           <Main />
           <NextScript />
-          {/* <FAB /> */}
         </body>
       </Html>
     )

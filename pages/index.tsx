@@ -1,11 +1,12 @@
 import Head from 'next/head'
 import { useEffect } from 'react'
 
+import NavBar from '~/components/NavBar'
+
 import Container from '../components/container'
 import HeroPost from '../components/hero-post'
 import Layout from '../components/layout'
 import MoreStories from '../components/more-stories'
-import WithSubnavigation from '../components/NavBar/NavBar'
 import { indexQuery, navQuery, settingsQuery } from '../lib/queries'
 import { usePreviewSubscription } from '../lib/sanity'
 import { getClient, overlayDrafts } from '../lib/sanity.server'
@@ -35,7 +36,7 @@ function Index({
           <title>{title}</title>
         </Head>
         <Container>
-          <WithSubnavigation title={h1} logo={logo} items={navSettings} />
+          <NavBar items={navSettings} />
           {heroPost && (
             <HeroPost
               title={heroPost.title}
@@ -66,7 +67,6 @@ export async function getStaticProps({ preview = false }) {
       revalidate: process.env.SANITY_REVALIDATE_SECRET ? undefined : 60,
     }
   }
-
 
   /* when the client isn't set up */
   return {

@@ -8,14 +8,24 @@ import Service, { IService } from './Service'
 
 type Props = { items: IService[] }
 
-const NavBar2 = (props: Props) => {
+const NavBar2 = ({ items }: Props) => {
+  const level1Items = items
+    .filter((item) => item.level === '1')
+    .sort((a, b) => +a.order - +b.order)
   return (
     <div className="relative flex h-20 items-center gap-8">
       <CompanyLogo />
       <div className="flex items-center gap-8">
-        {props.items.map((item) => (
-          <Service key={item.title} service={item} />
-        ))}
+        {level1Items.map((item) => {
+          const childServices = items.filter((i) => i.parent == item.id)
+          return (
+            <Service
+              key={item.title}
+              service={item}
+              childServices={childServices}
+            />
+          )
+        })}
         <SearchIcon
           className="h-5 cursor-pointer hover:text-red-600"
           boxSize={5}

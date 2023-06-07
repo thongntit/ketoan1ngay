@@ -20,9 +20,7 @@ export default defineConfig({
   basePath,
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  title:
-    process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
-    'Next.js Blog with Sanity.io',
+  title: process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'KetoanDTN - Quản lý',
   schema: {
     // If you want more content types, you can add them to this array
     types: [settingsType, navigationType, postType, authorType],

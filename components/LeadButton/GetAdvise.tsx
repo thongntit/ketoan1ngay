@@ -15,6 +15,7 @@ const GetAdvise = () => {
       borderRadius="24px"
       paddingX={6}
       color={'#dc2626'}
+      background={'#ffffff'}
       onClick={onClick}
     >
       Tư vấn

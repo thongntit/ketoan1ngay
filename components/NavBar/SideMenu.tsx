@@ -9,9 +9,16 @@ import {
   DrawerHeader,
   DrawerOverlay,
 } from '@chakra-ui/react'
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+} from '@chakra-ui/react'
 
-import GetAdvise from '../LeadButton/GetAdvise'
 import Service, { IService } from './Service'
+import SideBarService from './SideBarService'
 
 type Props = {
   items: IService[]
@@ -27,23 +34,22 @@ const SideMenu = ({ items, open, onClose }: Props) => {
     <Drawer isOpen={open} placement="right" onClose={onClose}>
       <DrawerOverlay />
       <DrawerContent>
+        <DrawerCloseButton />
         <DrawerBody>
-          <div className="flex h-full w-full justify-center">
+          <div className="flex h-full">
             <div className="my-auto flex w-full flex-col gap-8">
-              {level1Items.map((item) => {
-                const childServices = items.filter((i) => i.parent == item.id)
-                return (
-                  <Service
-                    key={item.title}
-                    service={item}
-                    childServices={childServices}
-                  />
-                )
-              })}
-              <SearchIcon
-                className="h-5 cursor-pointer hover:text-red-600"
-                boxSize={5}
-              />
+              <Accordion>
+                {level1Items.map((item) => {
+                  const childServices = items.filter((i) => i.parent == item.id)
+                  return (
+                    <SideBarService
+                      key={item.title}
+                      service={item}
+                      childServices={childServices}
+                    />
+                  )
+                })}
+              </Accordion>
               <Button
                 variant="outline"
                 colorScheme="red"

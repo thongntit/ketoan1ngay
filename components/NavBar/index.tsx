@@ -1,5 +1,5 @@
 import { HamburgerIcon, SearchIcon } from '@chakra-ui/icons'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import GetAdvise from '~/components/LeadButton/GetAdvise'
 
@@ -16,7 +16,7 @@ const NavBar = ({ items }: Props) => {
     .filter((item) => item.level === '1')
     .sort((a, b) => +a.order - +b.order)
   return (
-    <div className="sticky top-0 z-10 flex h-20 items-center justify-between gap-8 bg-white">
+    <div className="z-1 sticky top-0 flex h-20 w-full items-center justify-between gap-8 bg-white px-40">
       <CompanyLogo />
       <div className="hidden items-center gap-8 lg:flex">
         {level1Items.map((item) => {
@@ -33,17 +33,18 @@ const NavBar = ({ items }: Props) => {
           className="h-5 cursor-pointer hover:text-red-600"
           boxSize={5}
         />
-
         <GetAdvise />
       </div>
-      <span className="inline-block" onClick={() => setShowHamMenu(true)}>
-        <HamburgerIcon boxSize={5} />
-      </span>
-      <SideMenu
-        items={items}
-        open={showHamMenu}
-        onClose={() => setShowHamMenu(false)}
-      />
+      <div className="md:hidden">
+        <span className="inline-block" onClick={() => setShowHamMenu(true)}>
+          <HamburgerIcon boxSize={5} />
+        </span>
+        <SideMenu
+          items={items}
+          open={showHamMenu}
+          onClose={() => setShowHamMenu(false)}
+        />
+      </div>
     </div>
   )
 }

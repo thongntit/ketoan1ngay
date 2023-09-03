@@ -30,27 +30,24 @@ function Index({
     }
   }, [])
   return (
-    <>
-      <Layout preview={preview}>
-        <Head>
-          <title>{title}</title>
-        </Head>
-        <Container>
-          <NavBar items={navSettings} />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
-      </Layout>
-    </>
+    <Layout preview={preview} navSettings={navSettings}>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <Container>
+        {heroPost && (
+          <HeroPost
+            title={heroPost.title}
+            coverImage={heroPost.coverImage}
+            date={heroPost.date}
+            author={heroPost.author}
+            slug={heroPost.slug}
+            excerpt={heroPost.excerpt}
+          />
+        )}
+        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+      </Container>
+    </Layout>
   )
 }
 

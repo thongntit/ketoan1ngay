@@ -9,7 +9,6 @@ const GetAdvise = () => {
   }
   return (
     <Button
-      className="!absolute !right-0"
       variant="outline"
       colorScheme="red"
       borderRadius="24px"

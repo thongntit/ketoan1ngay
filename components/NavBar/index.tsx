@@ -9,7 +9,7 @@ import SideMenu from './SideMenu'
 
 type Props = { items: IService[] }
 
-const NavBar = ({ items }: Props) => {
+const NavBar = ({ items = [] }: Props) => {
   const [showHamMenu, setShowHamMenu] = useState(false)
 
   const level1Items = items

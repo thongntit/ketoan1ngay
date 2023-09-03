@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import { useEffect } from 'react'
 
-import NavBar from '~/components/NavBar'
-
 import Container from '../components/container'
 import HeroPost from '../components/hero-post'
 import Layout from '../components/layout'

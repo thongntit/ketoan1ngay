@@ -10,7 +10,12 @@ import PostBody from '../../components/post-body'
 import PostHeader from '../../components/post-header'
 import PostTitle from '../../components/post-title'
 import SectionSeparator from '../../components/section-separator'
-import { postQuery, postSlugsQuery, settingsQuery } from '../../lib/queries'
+import {
+  navQuery,
+  postQuery,
+  postSlugsQuery,
+  settingsQuery,
+} from '../../lib/queries'
 import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
 import { getClient, overlayDrafts } from '../../lib/sanity.server'
 import { PostProps } from '../../types'
@@ -19,10 +24,11 @@ interface Props {
   data: { post: PostProps; morePosts: any }
   preview: any
   blogSettings: any
+  navSettings: any
 }
 
 export default function Post(props: Props) {
-  const { data: initialData, preview, blogSettings } = props
+  const { data: initialData, preview, blogSettings, navSettings } = props
   const router = useRouter()
 
   const slug = initialData?.post?.slug
@@ -39,7 +45,7 @@ export default function Post(props: Props) {
   }
 
   return (
-    <Layout preview={preview}>
+    <Layout preview={preview} navSettings={navSettings}>
       <Container>
         <Header title={title} />
         {router.isFallback ? (
@@ -83,6 +89,7 @@ export async function getStaticProps({ params, preview = false }) {
     slug: params.slug,
   })
   const blogSettings = await getClient(preview).fetch(settingsQuery)
+  const navSettings = await getClient(preview).fetch(navQuery)
 
   return {
     props: {
@@ -92,6 +99,7 @@ export async function getStaticProps({ params, preview = false }) {
         morePosts: overlayDrafts(morePosts),
       },
       blogSettings,
+      navSettings,
     },
     // If webhooks isn't setup then attempt to re-generate in 1 minute intervals
     revalidate: process.env.SANITY_REVALIDATE_SECRET ? undefined : 60,
